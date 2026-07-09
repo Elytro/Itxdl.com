@@ -12,416 +12,103 @@
     <meta name="keywords" content="兄弟连,IT兄弟连,兄弟连教育">
     <meta name="description" content="兄弟连教育(Www.ItXdl.COM)是专注于公有云计算新手上云指导,基于云计算领先的互联网应用服务,提供阿里云活动折扣,腾讯云优惠活动,华为云打折活动,百度云官网活动等云厂商各种主机优惠。">
     <!-- Open Graph -->
-    <meta property="og:title" content="兄弟连官网">
+    <meta property="og:title" content="兄弟连官网,新手上云第一站">
     <meta property="og:type" content="WebSite">
-    <meta property="og:url" content="https://www.szydt.cn/">
+    <meta property="og:url" content="https://www.itxdl.com/">
     <meta property="og:image" content="https://apps.qtimg.com/assets/brand/873423b4a82f8e62.png">
     <meta property="og:description" content="兄弟连教育(Www.ItXdl.COM)是专注于公有云计算新手上云指导,基于云计算领先的互联网应用服务,提供阿里云活动折扣,腾讯云优惠活动,华为云打折活动,百度云官网活动等云厂商各种主机优惠。">
-    <meta property="og:site_name" content="兄弟连官网">
-    <link href="https://apps.alyjs.com/bootstrap/5.3.8/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://apps.alyjs.com/fortawesome/7.3.0/css/fort-awesome.min.css" rel="stylesheet">
+    <meta property="og:site_name" content="兄弟连官网,新手上云第一站">
+    <link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        :root {
-            --ink: #0d0d0d;
-            --stone: #6e6e73;
-            --mist: #aeaeb2;
-            --line: #e8e8ed;
-            --card-bg: #f5f5f7;
-            --dot: #d2d2d7;
+        * {
+            margin: 0;
+            padding: 0;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
+        html, body {
+            height: 100%;
             background: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
-            color: var(--ink);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            position: relative;
-            overflow-x: hidden;
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
-
-        /* ━━━━ 背景纹理 ━━━━ */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image: radial-gradient(var(--dot) 0.5px, transparent 0.5px);
-            background-size: 32px 32px;
+        .wrapper {
+            display: table;
+            width: 100%;
+            height: 100%;
         }
-
-        /* ━━━━ 主容器 ━━━━ */
-        .page {
-            position: relative;
-            z-index: 1;
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        /* ━━━━ HERO ━━━━ */
-        .hero {
-            padding: 100px 0 60px;
-            text-align: center;
-            border-bottom: 1px solid var(--line);
-            margin-bottom: 64px;
-            position: relative;
-        }
-
-        .hero-eyebrow {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--stone);
-            margin-bottom: 32px;
-        }
-
-        .hero-title {
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            font-weight: 200;
-            line-height: 1.25;
-            letter-spacing: 0.03em;
-            color: var(--ink);
-            margin-bottom: 24px;
-        }
-
-        .hero-title em {
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        .hero-sub {
-            font-size: 1.05rem;
-            font-weight: 300;
-            line-height: 1.8;
-            color: var(--stone);
-            max-width: 440px;
-            margin: 0 auto;
-        }
-
-        .hero-divider {
-            width: 1px;
-            height: 48px;
-            background: var(--line);
-            margin: 40px auto 0;
-        }
-
-        /* ━━━━ 时间线 ━━━━ */
-        .timeline {
-            padding: 0 0 72px;
-            border-bottom: 1px solid var(--line);
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--mist);
-            margin-bottom: 40px;
+        .main-content {
+            display: table-cell;
+            vertical-align: middle;
             text-align: center;
         }
-
-        .tl-list {
-            list-style: none;
-            position: relative;
-            padding-left: 40px;
+        .icon-wrap {
+            margin-bottom: 30px;
         }
-
-        .tl-list::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 8px;
-            bottom: 8px;
-            width: 1px;
-            background: var(--line);
+        .icon-wrap .fa {
+            color: #bbb;
         }
-
-        .tl-item {
-            position: relative;
-            padding-bottom: 36px;
-        }
-
-        .tl-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .tl-item::before {
-            content: '';
-            position: absolute;
-            left: -33px;
-            top: 6px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #fff;
-            border: 1.5px solid var(--ink);
-        }
-
-        .tl-item:last-child::before {
-            background: var(--ink);
-        }
-
-        .tl-date {
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            color: var(--stone);
-            margin-bottom: 4px;
-        }
-
-        .tl-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--ink);
-            margin-bottom: 4px;
-        }
-
-        .tl-desc {
-            font-size: 0.9rem;
-            color: var(--stone);
+        .title {
+            font-size: 28px;
             font-weight: 300;
-        }
-
-        /* ━━━━ FAQ ━━━━ */
-        .faq {
-            padding: 0 0 72px;
-            border-bottom: 1px solid var(--line);
-            margin-bottom: 64px;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .faq-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 28px;
-            transition: background 0.3s;
-        }
-
-        .faq-card:hover {
-            background: #eeeef1;
-        }
-
-        .faq-icon {
-            font-size: 1.1rem;
-            color: var(--ink);
+            color: #333;
+            letter-spacing: 2px;
             margin-bottom: 16px;
-            opacity: 0.6;
         }
-
-        .faq-q {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--ink);
-            margin-bottom: 6px;
+        .desc {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 0;
         }
-
-        .faq-a {
-            font-size: 0.85rem;
-            color: var(--stone);
-            font-weight: 300;
-            line-height: 1.6;
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #ddd;
+            margin: 24px auto;
         }
-
-        /* ━━━━ CLOSING ━━━━ */
-        .closing {
+        .footer-icp {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            width: 100%;
             text-align: center;
-            padding: 0 0 80px;
+            font-size: 13px;
+            color: #bbb;
+            line-height: 1.8;
         }
-
-        .closing-text {
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 2;
-            color: var(--stone);
-            max-width: 480px;
-            margin: 0 auto;
+        .footer-icp p {
+            margin: 2px 0 0 0;
         }
-
-        .closing-text strong {
-            font-weight: 500;
-            color: var(--ink);
-        }
-
-        .closing-sign {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--mist);
-            font-weight: 300;
-            letter-spacing: 0.05em;
-        }
-
-        /* ━━━━ FOOTER ━━━━ */
-        .footer {
-            text-align: center;
-            padding: 32px 32px 40px;
-            border-top: 1px solid var(--line);
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 6px 24px;
-        }
-
-        .footer a {
-            font-size: 0.75rem;
-            color: var(--mist);
+        a {
+            color: inherit;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.25s;
-            font-weight: 300;
-            letter-spacing: 0.02em;
         }
-
-        .footer a:hover {
-            color: var(--ink);
-        }
-
-        .footer-sep {
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: var(--line);
-        }
-
-        /* ━━━━ 动画 ━━━━ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-d1 { transition-delay: 0s; }
-        .reveal-d2 { transition-delay: 0.1s; }
-        .reveal-d3 { transition-delay: 0.2s; }
-        .reveal-d4 { transition-delay: 0.3s; }
-        .reveal-d5 { transition-delay: 0.4s; }
-        .reveal-d6 { transition-delay: 0.5s; }
-
-        /* ━━━━ 响应式 ━━━━ */
-        @media (max-width: 768px) {
-            .page { padding: 0 20px; }
-            .hero { padding: 72px 0 48px; margin-bottom: 48px; }
-            .hero-title { font-size: 2rem; }
-            .hero-sub { font-size: 0.95rem; }
-            .faq-grid { grid-template-columns: 1fr; }
-            .timeline { padding-bottom: 48px; margin-bottom: 48px; }
-            .faq { padding-bottom: 48px; margin-bottom: 48px; }
-            .tl-list { padding-left: 32px; }
-            .tl-item::before { left: -25px; }
-        }
-
-        @media (max-width: 480px) {
-            .page { padding: 0 16px; }
-            .hero { padding: 56px 0 36px; }
-            .hero-title { font-size: 1.7rem; }
-            .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.25em; }
-            .faq-card { padding: 20px; }
-            .footer-inner { flex-direction: column; gap: 8px; }
-            .footer-sep { display: none; }
+        a:link, a:visited, a:hover, a:active {
+            color: inherit;
         }
     </style>
 </head>
 <body>
-
-    <!-- ============================================= -->
-    <!-- HERO -->
-    <!-- ============================================= -->
-    <section class="hero reveal reveal-d1">
-        <p class="hero-eyebrow">Announcement</p>
-        <h1 class="hero-title">
-            <em>兄弟连</em>停服公告
-        </h1>
-        <p class="hero-sub">
-            感谢每一位会员长久以来的陪伴与支持。<br>
-            因业务调整，我们将于近期正式终止运营。
-        </p>
-        <div class="hero-divider"></div>
-    </section>
-
-    <div class="page">
-
-  
-
-
-        <!-- ============================================= -->
-        <!-- 告别 -->
-        <!-- ============================================= -->
-        <section class="closing reveal reveal-d6">
-            <p class="closing-text">
-                自上线以来，我们与您共同度过了无数难忘的时刻。<br>
-                每一次战斗、每一次冒险，都因您的参与而闪耀。<br><br>
-                虽有不舍，但<strong>告别是为了更好的重逢</strong>。<br>
-                感谢您，曾与我们并肩同行。
-            </p>
-            <p class="closing-sign">— 运营团队 敬上</p>
-        </section>
-
-    </div>
-
-    <!-- ============================================= -->
-    <!-- FOOTER -->
-    <!-- ============================================= -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-shield-halved" style="font-size:10px;"></i>
-                鲁ICP备2024092961号-3
-            </a>
-            <span class="footer-sep"></span>
-            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37131202371950" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-building-shield" style="font-size:10px;"></i>
-                鲁公网安备 37131202371950号
-            </a>
+    <div class="wrapper">
+        <div class="main-content">
+            <div class="container">
+                <h1 class="title"> Itxdl.com </h1>
+                <p class="desc">
+                    因上游平台(脑图)关闭,本站暂停运营！
+                </p>
+                <div class="divider"></div>
+                <p class="desc" style="font-size:13px;color:#bbb;">
+                    We apologize for the inconvenience.<br>
+                    The website is temporarily offline for maintenance.
+                </p>
+            </div>
         </div>
-    </footer>
-
-    <script src="https://apps.alyjs.com/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://apps.alyjs.com/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(function () {
-            var $els = $('.reveal');
-            var winH = $(window).height();
-
-            function run() {
-                $els.each(function () {
-                    var $t = $(this);
-                    if (!$t.hasClass('in')) {
-                        var top = $t.offset().top;
-                        if (top < winH - 60) $t.addClass('in');
-                    }
-                });
-            }
-
-            run();
-            $(window).on('scroll', run);
-            // fallback: ensure all revealed within 1.2s
-            setTimeout(function () { $els.addClass('in'); }, 1200);
-        });
-    </script>
+        <div class="footer-icp">
+                    <p>&copy; 2025 <a href="//www.buage.com/">布拉格</a> & <a href="//www.zulog.com/">祖龙列表</a> & <a href="">火山云计算</a> & <a href="//www.myjsw.com/">版权所有</a>.</p>
+        <p><a href="//beian.miit.gov.cn">鲁ICP备2024092961号-3</a> · <a href="">鲁公网安备37131202371950号</a></p>
+      
+        </div>
+    </div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>
