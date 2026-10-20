@@ -1,23 +1,809 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>itxdl.com</title>
-    <style>
-        body { font-family: -apple-system, "Segoe UI", sans-serif; display: flex;
-               min-height: 100vh; align-items: center; justify-content: center;
-               margin: 0; background: #f5f5f5; color: #333; }
-        .card { background: #fff; padding: 3rem 4rem; border-radius: 12px;
-                box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; }
-        h1 { margin: 0 0 .5rem; font-size: 1.6rem; }
-        p { margin: 0; color: #888; }
-    </style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>商城建站系统 · 快速搭建你的网上商城 | ITXDL</title>
+<meta name="keywords" content="商城建站系统,网上商城,电商建站,小程序商城,独立站">
+<meta name="description" content="ITXDL 商城建站系统：可视化装修、商品与订单管理、支付物流对接、多端覆盖，零代码十分钟搭建独立电商商城。">
+<link href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+  html, body { height: 100%; }
+  body {
+    background: #fff;
+    color: #2b2f33;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: #2b2f33; }
+  a:hover, a:focus { color: #111; text-decoration: none; }
+  .wrap { flex: 1 0 auto; }
+  ::selection { background: #111; color: #fff; }
+
+  /* ---------- 导航 ---------- */
+  .navbar-site {
+    background: rgba(255,255,255,.86);
+    border: 0; margin-bottom: 0; min-height: 64px;
+    transition: box-shadow .25s, background .25s;
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+  }
+  .navbar-site.scrolled { background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 6px 24px rgba(0,0,0,.05); }
+  .navbar-site .navbar-brand {
+    height: 64px; line-height: 34px; font-size: 18px; font-weight: 700;
+    letter-spacing: 1px; color: #111;
+  }
+  .navbar-site .navbar-brand i { color: #4f46e5; margin-right: 6px; }
+  .navbar-site .navbar-nav > li > a {
+    height: 64px; line-height: 34px; font-size: 14px; color: #6b7280;
+    position: relative; padding-left: 16px; padding-right: 16px;
+  }
+  .navbar-site .navbar-nav > li > a:hover,
+  .navbar-site .navbar-nav > .active > a { color: #111; background: transparent; }
+  .navbar-site .navbar-nav > li > a::after {
+    content: ''; position: absolute; left: 16px; right: 16px; bottom: 18px;
+    height: 2px; background: #111; border-radius: 2px;
+    transform: scaleX(0); transition: transform .25s ease;
+  }
+  .navbar-site .navbar-nav > li > a:hover::after,
+  .navbar-site .navbar-nav > .active > a::after { transform: scaleX(1); }
+  .navbar-site .navbar-nav > li.btn-nav > a::after { display: none; }
+  .navbar-site .navbar-toggle { border-color: #e5e5e5; margin-top: 15px; }
+  .navbar-site .navbar-toggle .icon-bar { background: #555; }
+  .btn-pill {
+    display: inline-block; background: #111; color: #fff !important;
+    border: 1px solid #111; border-radius: 22px;
+    padding: 8px 20px !important; font-size: 14px; margin-top: 14px;
+    height: auto !important; line-height: 1.4 !important;
+    transition: all .2s ease;
+  }
+  .btn-pill:hover { background: #4f46e5; border-color: #4f46e5; box-shadow: 0 6px 18px rgba(79,70,229,.28); }
+
+  /* ---------- 首屏 ---------- */
+  .hero {
+    position: relative; overflow: hidden; padding: 96px 0 0; text-align: center;
+    background:
+      radial-gradient(900px 460px at 50% -8%, rgba(79,70,229,.10), transparent 62%),
+      radial-gradient(700px 380px at 88% 12%, rgba(16,185,129,.08), transparent 60%),
+      #fff;
+  }
+  .hero .tag {
+    display: inline-block; font-size: 12.5px; color: #4f46e5;
+    background: rgba(79,70,229,.08); border: 1px solid rgba(79,70,229,.18);
+    border-radius: 20px; padding: 5px 15px; margin-bottom: 24px;
+  }
+  .hero .tag i { margin-right: 6px; }
+  .hero h1 {
+    font-size: 44px; font-weight: 700; margin: 0 0 18px;
+    letter-spacing: -.5px; line-height: 1.32; color: #0f1115;
+  }
+  .hero h1 em { font-style: normal; color: #4f46e5; }
+  .hero .lead {
+    color: #6b7280; font-size: 16px; margin: 0 auto 36px;
+    max-width: 640px; line-height: 1.95;
+  }
+  .hero .actions { margin-bottom: 22px; }
+  .hero .btn { border-radius: 26px; padding: 12px 30px; font-size: 15px; margin: 0 6px 10px; transition: all .2s ease; }
+  .btn-main { background: #111; border: 1px solid #111; color: #fff; }
+  .btn-main:hover, .btn-main:focus {
+    color: #fff; background: #4f46e5; border-color: #4f46e5;
+    box-shadow: 0 10px 26px rgba(79,70,229,.3); transform: translateY(-1px);
+  }
+  .btn-ghost { border: 1px solid #e3e5e8; color: #333; background: #fff; }
+  .btn-ghost:hover { border-color: #111; color: #111; background: #fff; transform: translateY(-1px); }
+  .hero .meta { font-size: 13px; color: #9aa1a9; margin-bottom: 58px; }
+  .hero .meta span { margin: 0 12px; display: inline-block; }
+  .hero .meta i { color: #10b981; margin-right: 5px; }
+
+  /* 产品窗口示意 */
+  .mockup {
+    max-width: 940px; margin: 0 auto; text-align: left;
+    border-radius: 12px 12px 0 0; overflow: hidden;
+    background: #fff; border: 1px solid #e8eaee; border-bottom: 0;
+    box-shadow: 0 -2px 40px rgba(17,24,39,.10), 0 24px 60px rgba(17,24,39,.10);
+    transform: translateY(0);
+  }
+  .mock-bar {
+    height: 38px; background: #f6f7f9; border-bottom: 1px solid #eceef1;
+    display: flex; align-items: center; padding: 0 14px;
+  }
+  .mock-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: #dcdee3; margin-right: 6px; }
+  .mock-bar .dot:nth-child(1) { background: #f0645a; }
+  .mock-bar .dot:nth-child(2) { background: #f3bf4f; }
+  .mock-bar .dot:nth-child(3) { background: #54c466; }
+  .mock-bar em {
+    font-style: normal; font-size: 11.5px; color: #9aa1a9; margin: 0 auto;
+    background: #fff; border: 1px solid #eceef1; border-radius: 12px; padding: 3px 14px;
+  }
+  .mock-body { display: flex; min-height: 330px; }
+  .mock-side {
+    width: 168px; flex: none; background: #fbfbfc; border-right: 1px solid #f0f1f4; padding: 16px 12px;
+  }
+  .mock-side .m-logo { height: 22px; width: 78px; border-radius: 5px; background: #111; margin-bottom: 18px; }
+  .mock-side .m-line { height: 9px; border-radius: 5px; background: #eceef1; margin-bottom: 11px; }
+  .mock-side .m-line.on { background: rgba(79,70,229,.28); width: 82%; }
+  .mock-side .m-line:nth-child(3) { width: 74%; }
+  .mock-side .m-line:nth-child(4) { width: 86%; }
+  .mock-side .m-line:nth-child(5) { width: 66%; }
+  .mock-side .m-line:nth-child(6) { width: 78%; }
+  .mock-main { flex: 1; padding: 18px; background: #fff; }
+  .mock-cards { display: flex; gap: 12px; margin-bottom: 16px; }
+  .mock-cards .mc {
+    flex: 1; height: 62px; border-radius: 8px; border: 1px solid #f0f1f4;
+    padding: 12px; background: #fcfcfd;
+  }
+  .mock-cards .mc b { display: block; height: 12px; width: 42%; border-radius: 4px; background: #eceef1; }
+  .mock-cards .mc span { display: block; height: 16px; width: 66%; margin-top: 10px; border-radius: 4px; background: #111; opacity: .82; }
+  .mock-grid { display: flex; gap: 12px; }
+  .mock-grid .mg { flex: 1; border: 1px solid #f0f1f4; border-radius: 8px; overflow: hidden; background: #fff; }
+  .mock-grid .mg .img { height: 74px; background: linear-gradient(135deg, #f2f3f7, #e7e9f0); }
+  .mock-grid .mg .img.i2 { background: linear-gradient(135deg, #eef0ff, #e3e6fb); }
+  .mock-grid .mg .img.i3 { background: linear-gradient(135deg, #eefaf4, #e2f4ec); }
+  .mock-grid .mg .t { height: 8px; background: #eceef1; border-radius: 4px; margin: 10px 10px 6px; }
+  .mock-grid .mg .t.s { width: 52%; margin-top: 0; margin-bottom: 12px; }
+  @media (max-width: 767px) {
+    .mock-side { display: none; }
+    .mock-body { min-height: 240px; }
+  }
+
+  /* ---------- 数据条 ---------- */
+  .stats { background: #fff; border-bottom: 1px solid #f0f0f0; padding: 46px 0; }
+  .stats .row > div { text-align: center; }
+  .stats .num { font-size: 30px; font-weight: 700; color: #0f1115; letter-spacing: -.5px; }
+  .stats .num i { font-style: normal; font-size: 18px; color: #4f46e5; }
+  .stats .txt { font-size: 13px; color: #9aa1a9; margin-top: 6px; }
+  @media (max-width: 767px) { .stats .row > div { margin-bottom: 26px; } }
+
+  /* ---------- 通用区块 ---------- */
+  .section { padding: 84px 0; }
+  .section.alt { background: #fbfbfc; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
+  .section-head { text-align: center; margin-bottom: 52px; }
+  .section-head .eyebrow {
+    font-size: 12.5px; letter-spacing: 2px; text-transform: uppercase;
+    color: #4f46e5; margin-bottom: 12px;
+  }
+  .section-head h2 { font-size: 30px; font-weight: 700; margin: 0 0 12px; color: #0f1115; letter-spacing: -.3px; }
+  .section-head p { color: #8a9099; font-size: 15px; margin: 0 auto; max-width: 560px; line-height: 1.9; }
+
+  /* 能力卡片 */
+  .feature {
+    position: relative; padding: 30px 26px 28px; border: 1px solid #eee; border-radius: 12px;
+    background: #fff; height: 100%; margin-bottom: 24px; overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .feature::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+    background: linear-gradient(90deg, #4f46e5, #10b981);
+    transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: #e2e5ea; box-shadow: 0 14px 34px rgba(17,24,39,.08); }
+  .feature:hover::before { transform: scaleX(1); }
+  .feature .fi {
+    width: 46px; height: 46px; line-height: 46px; text-align: center;
+    border-radius: 12px; color: #4f46e5; font-size: 18px; margin-bottom: 18px;
+    background: rgba(79,70,229,.08);
+  }
+  .feature:nth-child(2n) .fi { color: #0ea5e9; background: rgba(14,165,233,.09); }
+  .feature:nth-child(3n) .fi { color: #10b981; background: rgba(16,185,129,.09); }
+  .feature h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; color: #0f1115; }
+  .feature p { font-size: 13.5px; color: #8a9099; margin: 0 0 14px; line-height: 1.85; }
+  .feature .more { font-size: 13px; color: #4f46e5; }
+  .feature .more i { transition: transform .2s; margin-left: 4px; }
+  .feature:hover .more i { transform: translateX(4px); }
+
+  /* 场景 */
+  .scene {
+    display: block; text-align: center; padding: 32px 12px;
+    border: 1px solid #eee; border-radius: 12px; margin-bottom: 24px;
+    background: #fff; transition: all .25s ease;
+  }
+  .scene i {
+    font-size: 22px; color: #111; display: block; margin-bottom: 14px;
+    width: 54px; height: 54px; line-height: 52px; border-radius: 14px;
+    border: 1px solid #eee; margin: 0 auto 14px; transition: all .25s ease;
+  }
+  .scene span { font-size: 14px; color: #444; }
+  .scene:hover { border-color: #111; transform: translateY(-3px); box-shadow: 0 12px 28px rgba(17,24,39,.07); }
+  .scene:hover i { background: #111; border-color: #111; color: #fff; }
+
+  /* 流程 */
+  .steps { position: relative; }
+  .steps::before {
+    content: ''; position: absolute; left: 16.66%; right: 16.66%; top: 34px;
+    height: 1px; background: #e6e8ec;
+  }
+  @media (max-width: 991px) { .steps::before { display: none; } }
+  .step { text-align: center; padding: 0 20px; margin-bottom: 24px; }
+  .step .num {
+    width: 68px; height: 68px; line-height: 66px; margin: 0 auto 20px;
+    background: #fff; border: 1px solid #e6e8ec; border-radius: 50%;
+    color: #111; font-size: 20px; font-weight: 700; position: relative;
+    transition: all .25s ease;
+  }
+  .step:hover .num { background: #111; border-color: #111; color: #fff; box-shadow: 0 10px 24px rgba(17,24,39,.18); }
+  .step h4 { font-size: 16px; font-weight: 600; margin: 0 0 10px; color: #0f1115; }
+  .step p { font-size: 13.5px; color: #8a9099; line-height: 1.85; margin: 0; }
+
+  /* 套餐 */
+  .plan {
+    border: 1px solid #eee; border-radius: 14px; padding: 34px 28px;
+    background: #fff; margin-bottom: 24px; transition: all .25s ease;
+  }
+  .plan:hover { box-shadow: 0 16px 40px rgba(17,24,39,.09); }
+  .plan .pname { font-size: 15px; font-weight: 600; color: #111; margin-bottom: 16px; }
+  .plan .price { font-size: 38px; font-weight: 700; color: #0f1115; line-height: 1.1; letter-spacing: -1px; }
+  .plan .price small { font-size: 13px; font-weight: 400; color: #9aa1a9; letter-spacing: 0; }
+  .plan .pdesc { font-size: 13px; color: #8a9099; margin: 12px 0 22px; }
+  .plan ul { list-style: none; padding: 0; margin: 0 0 26px; }
+  .plan ul li { font-size: 13.5px; color: #555; line-height: 2.4; }
+  .plan ul li i { color: #10b981; margin-right: 9px; font-size: 12px; }
+  .plan .btn { border-radius: 24px; padding: 10px 0; width: 100%; font-size: 14px; }
+  .plan.recommend {
+    background: #111; border-color: #111; color: #fff;
+    box-shadow: 0 18px 44px rgba(17,24,39,.22); transform: translateY(-8px);
+  }
+  .plan.recommend .pname, .plan.recommend .price { color: #fff; }
+  .plan.recommend .price small, .plan.recommend .pdesc { color: rgba(255,255,255,.62); }
+  .plan.recommend ul li { color: rgba(255,255,255,.82); }
+  .plan.recommend ul li i { color: #34d399; }
+  .plan.recommend .badge-hot {
+    display: inline-block; font-size: 11.5px; background: #4f46e5; color: #fff;
+    border-radius: 20px; padding: 3px 10px; margin-left: 8px; vertical-align: 2px;
+  }
+  @media (max-width: 991px) { .plan.recommend { transform: none; } }
+
+  /* FAQ */
+  .faq-panel { border: 0; box-shadow: none; background: transparent; }
+  .faq-panel + .faq-panel { margin-top: 0; border-top: 1px solid #f0f0f0; }
+  .faq-panel .panel-heading { background: transparent; padding: 0; border: 0; border-radius: 0; }
+  .faq-panel .panel-title a {
+    display: block; padding: 20px 4px; font-size: 15px; font-weight: 600; color: #0f1115;
+  }
+  .faq-panel .panel-title a .fa { float: right; color: #9aa1a9; font-size: 13px; margin-top: 3px; transition: transform .25s; }
+  .faq-panel .panel-title a[aria-expanded="true"] .fa { transform: rotate(45deg); color: #4f46e5; }
+  .faq-panel .panel-body { padding: 0 4px 22px; font-size: 13.5px; color: #8a9099; line-height: 1.9; }
+
+  /* 底部 CTA */
+  .cta {
+    position: relative; overflow: hidden; padding: 88px 0; text-align: center; color: #fff;
+    background: #0f1115;
+    background-image:
+      radial-gradient(700px 300px at 18% 0%, rgba(79,70,229,.35), transparent 60%),
+      radial-gradient(700px 300px at 84% 100%, rgba(16,185,129,.28), transparent 62%);
+  }
+  .cta h3 { font-size: 30px; font-weight: 700; margin: 0 0 14px; letter-spacing: -.3px; }
+  .cta p { color: rgba(255,255,255,.66); font-size: 15px; margin: 0 0 32px; }
+  .cta .btn { border-radius: 26px; padding: 12px 32px; font-size: 15px; margin: 0 6px 10px; }
+  .cta .btn-main { background: #fff; border-color: #fff; color: #111; }
+  .cta .btn-main:hover, .cta .btn-main:focus { color: #fff; background: #4f46e5; border-color: #4f46e5; }
+  .cta .btn-ghost { background: transparent; border-color: rgba(255,255,255,.3); color: #fff; }
+  .cta .btn-ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
+
+  /* ---------- 页脚 ---------- */
+  .footer { border-top: 1px solid #f0f0f0; padding: 56px 0 26px; color: #8a9099; font-size: 13.5px; }
+  .footer h5 { font-size: 13.5px; font-weight: 600; color: #0f1115; margin: 0 0 18px; }
+  .footer .f-brand { font-size: 17px; font-weight: 700; color: #111; letter-spacing: 1px; margin-bottom: 14px; }
+  .footer .f-brand i { color: #4f46e5; margin-right: 6px; }
+  .footer .f-desc { line-height: 1.9; margin-bottom: 18px; max-width: 280px; }
+  .footer ul { list-style: none; padding: 0; margin: 0; }
+  .footer ul li { line-height: 2.3; }
+  .footer ul li a { color: #8a9099; }
+  .footer ul li a:hover { color: #111; }
+  .footer .f-contact { line-height: 2.3; }
+  .footer .f-contact i { color: #4f46e5; margin-right: 8px; width: 14px; }
+  .footer .bottom {
+    margin-top: 40px; padding-top: 22px; border-top: 1px solid #f0f0f0;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  }
+  .footer .copyright { color: #9aa1a9; }
+  .footer .beian a { color: #9aa1a9; margin-left: 16px; }
+  .footer .beian a:hover { color: #111; }
+  .footer .beian svg { vertical-align: -2px; margin-right: 4px; }
+  @media (max-width: 767px) {
+    .footer .bottom { flex-direction: column; text-align: center; }
+    .footer .beian { margin-top: 10px; }
+    .footer .beian a { margin: 0 8px; }
+    .footer .col-xs-6 { margin-bottom: 26px; }
+  }
+
+  /* 入场动画 */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 767px) {
+    .hero { padding-top: 64px; }
+    .hero h1 { font-size: 29px; }
+    .hero .lead { font-size: 15px; }
+    .section { padding: 56px 0; }
+    .section-head { margin-bottom: 34px; }
+    .section-head h2 { font-size: 23px; }
+    .cta h3 { font-size: 23px; }
+  }
+</style>
 </head>
 <body>
-    <div class="card">
-        <h1>itxdl.com</h1>
-        <p>Site initialized by oject.php</p>
+
+<div class="wrap">
+
+  <nav class="navbar navbar-site navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main">
+          <span class="sr-only">切换导航</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fa fa-cube"></i>ITXDL</a>
+      </div>
+      <div class="collapse navbar-collapse" id="nav-main">
+        <ul class="nav navbar-nav">
+          <li><a href="#feature">产品能力</a></li>
+          <li><a href="#scene">适用场景</a></li>
+          <li><a href="#step">建站流程</a></li>
+          <li><a href="#plan">价格套餐</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">登录</a></li>
+          <li class="btn-nav"><a class="btn-pill" href="#">免费试用</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- 首屏 -->
+  <header class="hero">
+    <div class="container">
+      <span class="tag"><i class="fa fa-bolt"></i>商城建站系统 · 全新 3.0 版本</span>
+      <h1>零代码，十分钟搭建<br>属于你的 <em>独立商城</em></h1>
+      <p class="lead">
+        可视化装修、商品与订单管理、支付物流一键对接，
+        一套系统覆盖 PC、H5 与小程序多端，让品牌把生意真正握在自己手里。
+      </p>
+      <div class="actions">
+        <a href="#" class="btn btn-main">免费试用 15 天</a>
+        <a href="#feature" class="btn btn-ghost">了解产品能力</a>
+      </div>
+      <div class="meta">
+        <span><i class="fa fa-check-circle"></i> 无需备案即可试用</span>
+        <span><i class="fa fa-check-circle"></i> 独立域名与数据</span>
+        <span><i class="fa fa-check-circle"></i> 7×24 技术支持</span>
+      </div>
+
+      <div class="mockup">
+        <div class="mock-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <em>shop.itxdl.com</em>
+        </div>
+        <div class="mock-body">
+          <aside class="mock-side">
+            <div class="m-logo"></div>
+            <div class="m-line on"></div>
+            <div class="m-line"></div>
+            <div class="m-line"></div>
+            <div class="m-line"></div>
+            <div class="m-line"></div>
+            <div class="m-line"></div>
+          </aside>
+          <div class="mock-main">
+            <div class="mock-cards">
+              <div class="mc"><b></b><span></span></div>
+              <div class="mc"><b></b><span></span></div>
+              <div class="mc"><b></b><span></span></div>
+              <div class="mc"><b></b><span></span></div>
+            </div>
+            <div class="mock-grid">
+              <div class="mg"><div class="img"></div><div class="t"></div><div class="t s"></div></div>
+              <div class="mg"><div class="img i2"></div><div class="t"></div><div class="t s"></div></div>
+              <div class="mg"><div class="img i3"></div><div class="t"></div><div class="t s"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 数据 -->
+  <div class="stats">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <div class="num" data-count="38000" data-suffix="+">0</div>
+          <div class="txt">正在运营的商城</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="num" data-count="99.99" data-suffix="%">0</div>
+          <div class="txt">服务可用性</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="num" data-count="120" data-suffix="+">0</div>
+          <div class="txt">行业模板</div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <div class="num" data-count="10" data-suffix="分钟">0</div>
+          <div class="txt">平均上线耗时</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心能力 -->
+  <section class="section" id="feature">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Core Features</div>
+        <h2>开箱即用的电商能力</h2>
+        <p>从店铺搭建到交易转化，全链路能力一站式配齐，让增长更简单。</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-th-large"></i></div>
+            <h4>可视化装修</h4>
+            <p>拖拽式页面编辑器，海量行业模板，首页与活动页随时调整，所见即所得。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-cubes"></i></div>
+            <h4>商品与库存</h4>
+            <p>支持多规格、虚拟商品、预售与套餐，库存实时同步，支持批量导入导出。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-shopping-cart"></i></div>
+            <h4>交易与订单</h4>
+            <p>购物车、优惠券、秒杀拼团一应俱全，订单全流程跟踪与自动化流转。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-credit-card"></i></div>
+            <h4>支付与结算</h4>
+            <p>微信、支付宝、银联多通道接入，对账清晰透明，支持分账与提现管理。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-truck"></i></div>
+            <h4>物流与售后</h4>
+            <p>主流快递平台对接，电子面单一键打单，退换货流程规范化自动处理。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 reveal">
+          <div class="feature">
+            <div class="fi"><i class="fa fa-line-chart"></i></div>
+            <h4>数据与会员</h4>
+            <p>经营看板、转化漏斗与会员分层，精准营销触达，驱动复购持续增长。</p>
+            <span class="more">了解更多 <i class="fa fa-long-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适用场景 -->
+  <section class="section alt" id="scene">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Scenarios</div>
+        <h2>适配各类经营场景</h2>
+        <p>一套系统，满足不同行业的商城形态，随业务成长灵活扩展。</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-shopping-bag"></i><span>品牌零售</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-cutlery"></i><span>餐饮外卖</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-gift"></i><span>生活服务</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-mobile"></i><span>数码家电</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-leaf"></i><span>生鲜农产</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-book"></i><span>知识付费</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-building"></i><span>批发分销</span></a></div>
+        <div class="col-xs-6 col-md-3 reveal"><a class="scene" href="#"><i class="fa fa-plane"></i><span>文旅票务</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 建站流程 -->
+  <section class="section" id="step">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">How It Works</div>
+        <h2>三步上线你的商城</h2>
+        <p>无需开发，无需运维，把时间留给经营本身。</p>
+      </div>
+      <div class="row steps">
+        <div class="col-sm-4 reveal">
+          <div class="step">
+            <div class="num">1</div>
+            <h4>选择模板</h4>
+            <p>按行业挑选心仪模板，一键安装，页面结构与示例数据同步就位。</p>
+          </div>
+        </div>
+        <div class="col-sm-4 reveal">
+          <div class="step">
+            <div class="num">2</div>
+            <h4>配置商品</h4>
+            <p>录入商品与价格，接入支付与物流，设置配送方式与售后规则。</p>
+          </div>
+        </div>
+        <div class="col-sm-4 reveal">
+          <div class="step">
+            <div class="num">3</div>
+            <h4>发布上线</h4>
+            <p>绑定独立域名，一键发布至 PC、H5 与小程序，即刻开始接单。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 套餐 -->
+  <section class="section alt" id="plan">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Pricing</div>
+        <h2>简单透明的价格</h2>
+        <p>按年订阅，按需升级，所有套餐均含 15 天免费试用。</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 reveal">
+          <div class="plan">
+            <div class="pname">基础版</div>
+            <div class="price">¥980<small> / 年</small></div>
+            <div class="pdesc">适合个人与小微商家起步</div>
+            <ul>
+              <li><i class="fa fa-check"></i> 100 个商品</li>
+              <li><i class="fa fa-check"></i> 5 套商城模板</li>
+              <li><i class="fa fa-check"></i> 微信 + 支付宝支付</li>
+              <li><i class="fa fa-check"></i> PC + H5 双端</li>
+            </ul>
+            <a href="#" class="btn btn-ghost">免费试用</a>
+          </div>
+        </div>
+        <div class="col-sm-4 reveal">
+          <div class="plan recommend">
+            <div class="pname">专业版 <span class="badge-hot">最受欢迎</span></div>
+            <div class="price">¥2980<small> / 年</small></div>
+            <div class="pdesc">成长型品牌的主流选择</div>
+            <ul>
+              <li><i class="fa fa-check"></i> 不限商品数量</li>
+              <li><i class="fa fa-check"></i> 全部模板 + 自定义装修</li>
+              <li><i class="fa fa-check"></i> 小程序 + 多端发布</li>
+              <li><i class="fa fa-check"></i> 优惠券 / 秒杀 / 拼团</li>
+              <li><i class="fa fa-check"></i> 会员体系与数据分析</li>
+            </ul>
+            <a href="#" class="btn btn-main">免费试用</a>
+          </div>
+        </div>
+        <div class="col-sm-4 reveal">
+          <div class="plan">
+            <div class="pname">旗舰版</div>
+            <div class="price">¥6980<small> / 年</small></div>
+            <div class="pdesc">面向多门店与连锁经营</div>
+            <ul>
+              <li><i class="fa fa-check"></i> 专业版全部能力</li>
+              <li><i class="fa fa-check"></i> 多门店与分账管理</li>
+              <li><i class="fa fa-check"></i> 开放 API 与私有化部署</li>
+              <li><i class="fa fa-check"></i> 专属客户成功经理</li>
+            </ul>
+            <a href="#" class="btn btn-ghost">联系顾问</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题 -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">FAQ</div>
+        <h2>常见问题</h2>
+        <p>关于试用、数据与上线，你想知道的都在这里。</p>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 reveal">
+          <div class="panel-group" id="faqGroup" role="tablist">
+            <div class="panel panel-default faq-panel">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#faqGroup" href="#q1" aria-expanded="true">
+                    试用期间需要付费或绑定信用卡吗？<i class="fa fa-plus"></i>
+                  </a>
+                </h4>
+              </div>
+              <div id="q1" class="panel-collapse collapse in" role="tabpanel">
+                <div class="panel-body">不需要。注册即可开通 15 天全功能试用，无需信用卡，到期后数据保留 30 天，可随时升级续费。</div>
+              </div>
+            </div>
+            <div class="panel panel-default faq-panel">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#faqGroup" href="#q2" aria-expanded="false">
+                    可以使用自己的独立域名吗？<i class="fa fa-plus"></i>
+                  </a>
+                </h4>
+              </div>
+              <div id="q2" class="panel-collapse collapse" role="tabpanel">
+                <div class="panel-body">可以。绑定自有域名后自动签发并续期 SSL 证书，全站 HTTPS 访问，也可以直接使用我们提供的二级域名。</div>
+              </div>
+            </div>
+            <div class="panel panel-default faq-panel">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#faqGroup" href="#q3" aria-expanded="false">
+                    商城数据是否属于我们？能否导出？<i class="fa fa-plus"></i>
+                  </a>
+                </h4>
+              </div>
+              <div id="q3" class="panel-collapse collapse" role="tabpanel">
+                <div class="panel-body">商品、订单、会员等数据全部归你所有，支持随时一键导出为 Excel / CSV，也提供开放 API 与系统对接。</div>
+              </div>
+            </div>
+            <div class="panel panel-default faq-panel">
+              <div class="panel-heading" role="tab">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#faqGroup" href="#q4" aria-expanded="false">
+                    支持小程序和 App 吗？<i class="fa fa-plus"></i>
+                  </a>
+                </h4>
+              </div>
+              <div id="q4" class="panel-collapse collapse" role="tabpanel">
+                <div class="panel-body">专业版起支持一键生成微信小程序并与 PC、H5 数据打通；旗舰版提供开放 API 与 App 端对接方案。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 CTA -->
+  <section class="cta">
+    <div class="container">
+      <h3>现在开始，搭建属于你的商城</h3>
+      <p>15 天免费试用，全程无需信用卡，数据随时可导出</p>
+      <a href="#" class="btn btn-main">立即免费试用</a>
+      <a href="#" class="btn btn-ghost">预约产品演示</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+        <div class="f-brand"><i class="fa fa-cube"></i>ITXDL</div>
+        <p class="f-desc">专注电商数字化，为品牌与商家提供简单、稳定、可成长的商城建站系统。</p>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h5>产品</h5>
+        <ul>
+          <li><a href="#feature">产品能力</a></li>
+          <li><a href="#scene">适用场景</a></li>
+          <li><a href="#plan">价格套餐</a></li>
+          <li><a href="#step">建站流程</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h5>资源</h5>
+        <ul>
+          <li><a href="#">帮助文档</a></li>
+          <li><a href="#">模板中心</a></li>
+          <li><a href="#">开放 API</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h5>关于</h5>
+        <ul>
+          <li><a href="#">关于我们</a></li>
+          <li><a href="#">服务协议</a></li>
+          <li><a href="#">隐私政策</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h5>联系我们</h5>
+        <div class="f-contact">
+          <div><i class="fa fa-envelope-o"></i> hi@itxdl.com</div>
+          <div><i class="fa fa-phone"></i> 400-000-0000</div>
+          <div><i class="fa fa-clock-o"></i> 9:00 - 18:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="copyright">Copyright &copy; 2026 ITXDL.COM. All Rights Reserved.</div>
+      <div class="beian">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">鲁ICP备2024092961号-3</a>
+        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=37130202373077" target="_blank" rel="nofollow">
+          <svg width="14" height="15" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#9aa1a9" d="M8 0.5l6.5 2.2v5.1c0 3.9-2.7 7.5-6.5 8.7-3.8-1.2-6.5-4.8-6.5-8.7V2.7L8 0.5zm0 2.2L3.7 3.9v3.9c0 2.9 1.9 5.6 4.3 6.6 2.4-1 4.3-3.7 4.3-6.6V3.9L8 2.7zm2.6 6.4l-3.3-3.3-1.2 1.2 2.1 2.1-2.1 2.1 1.2 1.2 2.1-2.1 2.1 2.1 1.2-1.2-2.1-2.1 2.1-2.1-1.2-1.2-2.1 2.1z"/></svg>
+          鲁公网安备37130202373077号
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+  $(function () {
+    // 导航滚动态
+    var $nav = $('.navbar-site'), $win = $(window);
+    function onScroll() {
+      $nav.toggleClass('scrolled', $win.scrollTop() > 10);
+    }
+    $win.on('scroll', onScroll);
+    onScroll();
+
+    // 锚点平滑滚动
+    $('a[href^="#"]:not([data-toggle])').on('click', function (e) {
+      var target = $(this).attr('href');
+      if (target === '#' || $(target).length === 0) return;
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: $(target).offset().top - 64 }, 500);
+    });
+
+    // 移动端点击后收起导航
+    $('.navbar-collapse a').on('click', function () {
+      if ($win.width() < 768) $('.navbar-collapse').collapse('hide');
+    });
+
+    // 滚动入场
+    $('.reveal').each(function () {
+      var $el = $(this);
+      if ($el.offset().top < $win.height() + $win.scrollTop()) {
+        setTimeout(function () { $el.addClass('in'); }, 60);
+      }
+    });
+    $win.on('scroll.reveal', function () {
+      var bottom = $win.scrollTop() + $win.height();
+      $('.reveal:not(.in)').each(function () {
+        var $el = $(this);
+        if ($el.offset().top < bottom - 60) $el.addClass('in');
+      });
+    });
+
+    // 数字滚动
+    function animateNum($el) {
+      var target = parseFloat($el.data('count'));
+      var suffix = $el.data('suffix') || '';
+      var isFloat = target % 1 !== 0;
+      var start = null, duration = 1200;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = target * eased;
+        var text = isFloat ? val.toFixed(2) : Math.round(val).toLocaleString('en-US');
+        $el.html(text + '<i>' + suffix + '</i>');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var statsDone = false;
+    $win.on('scroll.stats', function () {
+      if (statsDone) return;
+      var $s = $('.stats');
+      if ($win.scrollTop() + $win.height() > $s.offset().top + 60) {
+        statsDone = true;
+        $('.stats .num').each(function () { animateNum($(this)); });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
